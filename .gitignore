@@ -1,0 +1,3 @@
+#ignoruj pliki w katalogu bin, obj
+bin
+obj
