@@ -43,7 +43,7 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutImageEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buttonPencil = new System.Windows.Forms.Button();
+            this.pencil = new System.Windows.Forms.CheckBox();
             this.btnBlack = new System.Windows.Forms.Button();
             this.btnGray50 = new System.Windows.Forms.Button();
             this.btnDarkRed = new System.Windows.Forms.Button();
@@ -77,7 +77,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Location = new System.Drawing.Point(24, 91);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(557, 378);
+            this.pictureBox1.Size = new System.Drawing.Size(601, 378);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -184,21 +184,22 @@
             this.aboutImageEditorToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.aboutImageEditorToolStripMenuItem.Text = "About Image Editor";
             // 
-            // buttonPencil
+            // pencil
             // 
-            this.buttonPencil.Image = global::image_editor.Properties.Resources.pencil;
-            this.buttonPencil.Location = new System.Drawing.Point(24, 27);
-            this.buttonPencil.Name = "buttonPencil";
-            this.buttonPencil.Size = new System.Drawing.Size(30, 30);
-            this.buttonPencil.TabIndex = 2;
-            this.buttonPencil.TabStop = false;
-            this.buttonPencil.UseVisualStyleBackColor = true;
-            this.buttonPencil.Click += new System.EventHandler(this.buttonPencil_Click);
+            this.pencil.Appearance = System.Windows.Forms.Appearance.Button;
+            this.pencil.Image = global::image_editor.Properties.Resources.pencil;
+            this.pencil.Location = new System.Drawing.Point(24, 27);
+            this.pencil.Name = "pencil";
+            this.pencil.Size = new System.Drawing.Size(30, 30);
+            this.pencil.TabIndex = 2;
+            this.pencil.TabStop = false;
+            this.pencil.UseVisualStyleBackColor = true;
+            this.pencil.Click += new System.EventHandler(this.buttonPencil_Click);
             // 
             // btnBlack
             // 
             this.btnBlack.BackColor = System.Drawing.Color.Black;
-            this.btnBlack.Location = new System.Drawing.Point(200, 25);
+            this.btnBlack.Location = new System.Drawing.Point(240, 25);
             this.btnBlack.Name = "btnBlack";
             this.btnBlack.Size = new System.Drawing.Size(30, 30);
             this.btnBlack.TabIndex = 3;
@@ -208,7 +209,7 @@
             // btnGray50
             // 
             this.btnGray50.BackColor = System.Drawing.Color.Gray;
-            this.btnGray50.Location = new System.Drawing.Point(230, 25);
+            this.btnGray50.Location = new System.Drawing.Point(270, 25);
             this.btnGray50.Name = "btnGray50";
             this.btnGray50.Size = new System.Drawing.Size(30, 30);
             this.btnGray50.TabIndex = 4;
@@ -218,7 +219,7 @@
             // btnDarkRed
             // 
             this.btnDarkRed.BackColor = System.Drawing.Color.DarkRed;
-            this.btnDarkRed.Location = new System.Drawing.Point(260, 25);
+            this.btnDarkRed.Location = new System.Drawing.Point(300, 25);
             this.btnDarkRed.Name = "btnDarkRed";
             this.btnDarkRed.Size = new System.Drawing.Size(30, 30);
             this.btnDarkRed.TabIndex = 5;
@@ -228,7 +229,7 @@
             // btnRed
             // 
             this.btnRed.BackColor = System.Drawing.Color.Red;
-            this.btnRed.Location = new System.Drawing.Point(290, 25);
+            this.btnRed.Location = new System.Drawing.Point(330, 25);
             this.btnRed.Name = "btnRed";
             this.btnRed.Size = new System.Drawing.Size(30, 30);
             this.btnRed.TabIndex = 6;
@@ -238,7 +239,7 @@
             // btnOrange
             // 
             this.btnOrange.BackColor = System.Drawing.Color.Orange;
-            this.btnOrange.Location = new System.Drawing.Point(320, 25);
+            this.btnOrange.Location = new System.Drawing.Point(360, 25);
             this.btnOrange.Name = "btnOrange";
             this.btnOrange.Size = new System.Drawing.Size(30, 30);
             this.btnOrange.TabIndex = 7;
@@ -248,7 +249,7 @@
             // btnYellow
             // 
             this.btnYellow.BackColor = System.Drawing.Color.Yellow;
-            this.btnYellow.Location = new System.Drawing.Point(350, 25);
+            this.btnYellow.Location = new System.Drawing.Point(390, 25);
             this.btnYellow.Name = "btnYellow";
             this.btnYellow.Size = new System.Drawing.Size(30, 30);
             this.btnYellow.TabIndex = 8;
@@ -258,7 +259,7 @@
             // btnGreen
             // 
             this.btnGreen.BackColor = System.Drawing.Color.Green;
-            this.btnGreen.Location = new System.Drawing.Point(380, 25);
+            this.btnGreen.Location = new System.Drawing.Point(420, 25);
             this.btnGreen.Name = "btnGreen";
             this.btnGreen.Size = new System.Drawing.Size(30, 30);
             this.btnGreen.TabIndex = 9;
@@ -268,7 +269,7 @@
             // btnTurquoise
             // 
             this.btnTurquoise.BackColor = System.Drawing.Color.Turquoise;
-            this.btnTurquoise.Location = new System.Drawing.Point(410, 25);
+            this.btnTurquoise.Location = new System.Drawing.Point(450, 25);
             this.btnTurquoise.Name = "btnTurquoise";
             this.btnTurquoise.Size = new System.Drawing.Size(30, 30);
             this.btnTurquoise.TabIndex = 10;
@@ -278,7 +279,7 @@
             // btnIndigo
             // 
             this.btnIndigo.BackColor = System.Drawing.Color.Blue;
-            this.btnIndigo.Location = new System.Drawing.Point(440, 25);
+            this.btnIndigo.Location = new System.Drawing.Point(480, 25);
             this.btnIndigo.Name = "btnIndigo";
             this.btnIndigo.Size = new System.Drawing.Size(30, 30);
             this.btnIndigo.TabIndex = 11;
@@ -288,7 +289,7 @@
             // btnPurple
             // 
             this.btnPurple.BackColor = System.Drawing.Color.Purple;
-            this.btnPurple.Location = new System.Drawing.Point(470, 25);
+            this.btnPurple.Location = new System.Drawing.Point(510, 25);
             this.btnPurple.Name = "btnPurple";
             this.btnPurple.Size = new System.Drawing.Size(30, 30);
             this.btnPurple.TabIndex = 12;
@@ -298,7 +299,7 @@
             // btnWhite
             // 
             this.btnWhite.BackColor = System.Drawing.Color.White;
-            this.btnWhite.Location = new System.Drawing.Point(200, 55);
+            this.btnWhite.Location = new System.Drawing.Point(240, 55);
             this.btnWhite.Name = "btnWhite";
             this.btnWhite.Size = new System.Drawing.Size(30, 30);
             this.btnWhite.TabIndex = 13;
@@ -308,7 +309,7 @@
             // btnGray25
             // 
             this.btnGray25.BackColor = System.Drawing.Color.LightGray;
-            this.btnGray25.Location = new System.Drawing.Point(230, 55);
+            this.btnGray25.Location = new System.Drawing.Point(270, 55);
             this.btnGray25.Name = "btnGray25";
             this.btnGray25.Size = new System.Drawing.Size(30, 30);
             this.btnGray25.TabIndex = 14;
@@ -318,7 +319,7 @@
             // btnBrown
             // 
             this.btnBrown.BackColor = System.Drawing.Color.Brown;
-            this.btnBrown.Location = new System.Drawing.Point(260, 55);
+            this.btnBrown.Location = new System.Drawing.Point(300, 55);
             this.btnBrown.Name = "btnBrown";
             this.btnBrown.Size = new System.Drawing.Size(30, 30);
             this.btnBrown.TabIndex = 15;
@@ -328,7 +329,7 @@
             // btnRose
             // 
             this.btnRose.BackColor = System.Drawing.Color.Pink;
-            this.btnRose.Location = new System.Drawing.Point(290, 55);
+            this.btnRose.Location = new System.Drawing.Point(330, 55);
             this.btnRose.Name = "btnRose";
             this.btnRose.Size = new System.Drawing.Size(30, 30);
             this.btnRose.TabIndex = 16;
@@ -338,7 +339,7 @@
             // btnGolden
             // 
             this.btnGolden.BackColor = System.Drawing.Color.Gold;
-            this.btnGolden.Location = new System.Drawing.Point(320, 55);
+            this.btnGolden.Location = new System.Drawing.Point(360, 55);
             this.btnGolden.Name = "btnGolden";
             this.btnGolden.Size = new System.Drawing.Size(30, 30);
             this.btnGolden.TabIndex = 17;
@@ -348,7 +349,7 @@
             // btnLightYellow
             // 
             this.btnLightYellow.BackColor = System.Drawing.Color.LightYellow;
-            this.btnLightYellow.Location = new System.Drawing.Point(350, 55);
+            this.btnLightYellow.Location = new System.Drawing.Point(390, 55);
             this.btnLightYellow.Name = "btnLightYellow";
             this.btnLightYellow.Size = new System.Drawing.Size(30, 30);
             this.btnLightYellow.TabIndex = 18;
@@ -358,7 +359,7 @@
             // btnLime
             // 
             this.btnLime.BackColor = System.Drawing.Color.Lime;
-            this.btnLime.Location = new System.Drawing.Point(380, 55);
+            this.btnLime.Location = new System.Drawing.Point(420, 55);
             this.btnLime.Name = "btnLime";
             this.btnLime.Size = new System.Drawing.Size(30, 30);
             this.btnLime.TabIndex = 19;
@@ -368,7 +369,7 @@
             // btnLigthCyan
             // 
             this.btnLigthCyan.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.btnLigthCyan.Location = new System.Drawing.Point(410, 55);
+            this.btnLigthCyan.Location = new System.Drawing.Point(450, 55);
             this.btnLigthCyan.Name = "btnLigthCyan";
             this.btnLigthCyan.Size = new System.Drawing.Size(30, 30);
             this.btnLigthCyan.TabIndex = 20;
@@ -378,7 +379,7 @@
             // btnBlueGray
             // 
             this.btnBlueGray.BackColor = System.Drawing.Color.CadetBlue;
-            this.btnBlueGray.Location = new System.Drawing.Point(440, 55);
+            this.btnBlueGray.Location = new System.Drawing.Point(480, 55);
             this.btnBlueGray.Name = "btnBlueGray";
             this.btnBlueGray.Size = new System.Drawing.Size(30, 30);
             this.btnBlueGray.TabIndex = 21;
@@ -388,7 +389,7 @@
             // btnLavender
             // 
             this.btnLavender.BackColor = System.Drawing.Color.LavenderBlush;
-            this.btnLavender.Location = new System.Drawing.Point(470, 55);
+            this.btnLavender.Location = new System.Drawing.Point(510, 55);
             this.btnLavender.Name = "btnLavender";
             this.btnLavender.Size = new System.Drawing.Size(30, 30);
             this.btnLavender.TabIndex = 22;
@@ -398,7 +399,7 @@
             // colorPalette
             // 
             this.colorPalette.Image = ((System.Drawing.Image)(resources.GetObject("colorPalette.Image")));
-            this.colorPalette.Location = new System.Drawing.Point(506, 25);
+            this.colorPalette.Location = new System.Drawing.Point(550, 25);
             this.colorPalette.Name = "colorPalette";
             this.colorPalette.Size = new System.Drawing.Size(75, 45);
             this.colorPalette.TabIndex = 23;
@@ -408,7 +409,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(152, 72);
+            this.label1.Location = new System.Drawing.Point(186, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 25;
@@ -417,7 +418,7 @@
             // selectedColor
             // 
             this.selectedColor.BackColor = System.Drawing.Color.Black;
-            this.selectedColor.Location = new System.Drawing.Point(143, 25);
+            this.selectedColor.Location = new System.Drawing.Point(189, 25);
             this.selectedColor.Name = "selectedColor";
             this.selectedColor.Size = new System.Drawing.Size(45, 45);
             this.selectedColor.TabIndex = 24;
@@ -426,7 +427,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(514, 72);
+            this.label2.Location = new System.Drawing.Point(559, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 26;
@@ -461,7 +462,7 @@
             this.Controls.Add(this.btnDarkRed);
             this.Controls.Add(this.btnGray50);
             this.Controls.Add(this.btnBlack);
-            this.Controls.Add(this.buttonPencil);
+            this.Controls.Add(this.pencil);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -491,7 +492,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutImageEditorToolStripMenuItem;
-        private System.Windows.Forms.Button buttonPencil;
+        private System.Windows.Forms.CheckBox pencil;
         private System.Windows.Forms.Button btnBlack;
         private System.Windows.Forms.Button btnGray50;
         private System.Windows.Forms.Button btnDarkRed;

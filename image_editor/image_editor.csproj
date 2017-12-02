@@ -80,7 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\edit_color.png" />
-    <Content Include="Resources\edit_color2.png" />
     <Content Include="Resources\pencil.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
