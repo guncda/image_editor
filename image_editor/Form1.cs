@@ -22,7 +22,6 @@ namespace image_editor
             cY,
             dX,
             dY;
-        Color color;
         int tool;
         Graphics graphics;
         Bitmap image;
@@ -34,14 +33,13 @@ namespace image_editor
             sfd = new SaveFileDialog();
             ofd.Filter = "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff";
             sfd.Filter = ofd.Filter;
-            color = Color.Black;
             image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             graphics = Graphics.FromImage(image);
+            selectedColor.BackColor = Color.Black; ;
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-
             e.Graphics.DrawImage(image, 0, 0, image.Width, image.Height);
         }
 
@@ -83,7 +81,7 @@ namespace image_editor
                 switch (tool)
                 {
                     case 1:
-                        graphics.DrawLine(new Pen(color), startP, endP);
+                        graphics.DrawLine(new Pen(selectedColor.BackColor), startP, endP);
                         pictureBox1.Invalidate();
                         break;
 
@@ -121,6 +119,118 @@ namespace image_editor
         private void buttonPencil_Click(object sender, EventArgs e)
         {
             tool = 1;
+        }
+
+        public void btnBlack_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Black;
+        }
+
+        protected void btnGray50_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Gray;
+        }
+
+        private void btnDarkRed_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.DarkRed;
+        }
+
+        private void btnRed_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Red;
+        }
+
+        private void btnOrange_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Orange;
+        }
+
+        private void btnYellow_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Yellow;
+        }
+
+        private void btnGreen_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Green;
+        }
+
+        private void btnTurquoise_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Turquoise;
+        }
+
+        private void btnIndigo_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Blue;
+        }
+
+        private void btnPurple_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Purple;
+        }
+
+        private void btnWhite_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.White;
+        }
+
+        private void btnGray25_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.LightGray;
+        }
+
+        private void btnBrown_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Brown;
+        }
+
+        private void btnRose_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Pink;
+        }
+
+        private void btnGolden_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Gold;
+        }
+
+        private void btnLightYellow_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.LightYellow;
+        }
+
+        private void btnLime_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Lime;
+        }
+
+        private void btnLigthCyan_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.PaleTurquoise;
+        }
+
+        private void btnBlueGray_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.CadetBlue;
+        }
+
+        private void btnLavender_Click(object sender, EventArgs e)
+        {
+            selectedColor.BackColor = Color.Lavender;
+        }
+
+        private void colorPalette_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.AllowFullOpen = true;
+            cd.ShowHelp = true;
+            cd.Color = selectedColor.BackColor;
+            //cd.Color = textBox1.ForeColor;
+
+            if (cd.ShowDialog() == DialogResult.OK)
+                selectedColor.BackColor = cd.Color;
         }
 
     }
