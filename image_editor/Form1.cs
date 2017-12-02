@@ -25,6 +25,7 @@ namespace image_editor
         Color color;
         int tool;
         Graphics graphics;
+        Bitmap image;
 
         public Form1()
         {
@@ -34,7 +35,14 @@ namespace image_editor
             ofd.Filter = "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff";
             sfd.Filter = ofd.Filter;
             color = Color.Black;
-            graphics = pictureBox1.CreateGraphics();
+            image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            graphics = Graphics.FromImage(image);
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+
+            e.Graphics.DrawImage(image, 0, 0, image.Width, image.Height);
         }
 
         private void mouseClick(object sender, MouseEventArgs e)
@@ -76,6 +84,7 @@ namespace image_editor
                 {
                     case 1:
                         graphics.DrawLine(new Pen(color), startP, endP);
+                        pictureBox1.Invalidate();
                         break;
 
                     default:
@@ -84,6 +93,7 @@ namespace image_editor
                 }
                 startP = endP;
             }
+
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,15 +101,20 @@ namespace image_editor
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 pictureBox1.ImageLocation = ofd.FileName;
-
+                pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             }
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Graphics g = Graphics.FromImage(image);
+            Rectangle rect = pictureBox1.RectangleToScreen(pictureBox1.ClientRectangle);
+            g.CopyFromScreen(rect.Location, Point.Empty, pictureBox1.Size);
+            g.Dispose();
+
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                pictureBox1.Image.Save(sfd.FileName);
+                image.Save(sfd.FileName);
             }
         }
 
@@ -107,5 +122,6 @@ namespace image_editor
         {
             tool = 1;
         }
+
     }
 }
