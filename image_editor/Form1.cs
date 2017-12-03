@@ -68,6 +68,15 @@ namespace image_editor
         private void mouseUp(object sender, MouseEventArgs e)
         {
             mouseHold = false;
+            switch (tool)
+            {
+                case 2:
+                    Rectangle rec = new Rectangle(startP.X, startP.Y, Math.Abs(e.X - startP.X), Math.Abs(e.Y - startP.Y));
+                    graphics.DrawRectangle(new Pen(selectedColor.BackColor), rec);
+                    pictureBox1.Invalidate();
+                    break;
+
+            }
         }
 
         private void mouseMove(object sender, MouseEventArgs e)
@@ -77,23 +86,26 @@ namespace image_editor
                 endP = e.Location;
                 x = e.X;
                 y = e.Y;
-
+                pictureBox1.Invalidate();
                 switch (tool)
                 {
                     case 1:
                         graphics.DrawLine(new Pen(selectedColor.BackColor), startP, endP);
                         pictureBox1.Invalidate();
+                        startP = endP;
                         break;
-
+                    case 2:
+                       
+                        break;
                     default:
                         Console.WriteLine("ERROR: Unkwon tool");
                         break;
                 }
-                startP = endP;
+                
             }
 
         }
-
+       
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -199,6 +211,16 @@ namespace image_editor
         private void btnLightYellow_Click(object sender, EventArgs e)
         {
             selectedColor.BackColor = Color.LightYellow;
+        }
+
+        private void pencil_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tool = 2;
         }
 
         private void btnLime_Click(object sender, EventArgs e)

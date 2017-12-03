@@ -68,6 +68,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.selectedColor = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.Rectangle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -194,6 +195,7 @@
             this.pencil.TabIndex = 2;
             this.pencil.TabStop = false;
             this.pencil.UseVisualStyleBackColor = true;
+            this.pencil.CheckedChanged += new System.EventHandler(this.pencil_CheckedChanged);
             this.pencil.Click += new System.EventHandler(this.buttonPencil_Click);
             // 
             // btnBlack
@@ -433,11 +435,21 @@
             this.label2.TabIndex = 26;
             this.label2.Text = "Color Palette";
             // 
+            // Rectangle
+            // 
+            this.Rectangle.Location = new System.Drawing.Point(64, 26);
+            this.Rectangle.Name = "Rectangle";
+            this.Rectangle.Size = new System.Drawing.Size(34, 30);
+            this.Rectangle.TabIndex = 27;
+            this.Rectangle.UseVisualStyleBackColor = true;
+            this.Rectangle.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 501);
+            this.Controls.Add(this.Rectangle);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.selectedColor);
@@ -517,6 +529,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button selectedColor;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button Rectangle;
     }
 }
 
