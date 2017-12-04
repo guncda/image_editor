@@ -108,15 +108,21 @@ namespace image_editor
                     case 1:
                         graphics.DrawLine(new Pen(selectedColor.BackColor), startP, endP);
                         pictureBox1.Invalidate();
-                        startP = endP;
                         break;
-                    case 2:
-                       
+                    case 4:
+                        graphics.FillEllipse(new SolidBrush(selectedColor.BackColor), e.X, e.Y, (int)comboBox1.SelectedItem, (int)comboBox1.SelectedItem);
+                        pictureBox1.Invalidate();
+                        break;
+                    case 5:
+                        graphics.FillEllipse(new SolidBrush(Color.White), e.X, e.Y, 20, 20);
+                        pictureBox1.Invalidate();
                         break;
                     default:
                         Console.WriteLine("ERROR: Unkwon tool");
                         break;
                 }
+
+                startP = endP;
                 
             }
 
@@ -169,9 +175,19 @@ namespace image_editor
             this.Close();
         }
 
-        private void buttonPencil_Click(object sender, EventArgs e)
+        private void pencil_Click(object sender, EventArgs e)
         {
             tool = 1;
+        }
+
+        private void brush_Click(object sender, EventArgs e)
+        {
+            tool = 4;
+        }
+
+        private void eraser_Click(object sender, EventArgs e)
+        {
+            tool = 5;
         }
 
         public void btnBlack_Click(object sender, EventArgs e)
@@ -252,11 +268,6 @@ namespace image_editor
         private void btnLightYellow_Click(object sender, EventArgs e)
         {
             selectedColor.BackColor = Color.LightYellow;
-        }
-
-        private void pencil_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)

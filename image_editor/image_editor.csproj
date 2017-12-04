@@ -79,7 +79,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\brush.png" />
     <Content Include="Resources\edit_color.png" />
+    <Content Include="Resources\eraser.png" />
     <Content Include="Resources\pencil.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
