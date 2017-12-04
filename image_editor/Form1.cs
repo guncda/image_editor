@@ -35,10 +35,72 @@ namespace image_editor
             sfd = new SaveFileDialog();
             ofd.Filter = "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff";
             sfd.Filter = ofd.Filter;
+            //this.DragEnter += new DragEventHandler(Form1_DragEnter);
+            //this.DragDrop += new DragEventHandler(Form1_DragDrop);
             image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             graphics = Graphics.FromImage(image);
             selectedColor.BackColor = Color.Black;
             this.Text = formTitle;
+        }
+
+        private void Form1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void Form1_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] tmp = (string[])e.Data.GetData(DataFormats.FileDrop);
+            pictureBox1.ImageLocation = tmp[0];
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            this.Text = System.IO.Path.GetFileNameWithoutExtension(tmp[0]);
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            graphics.Clear(Color.White);
+            pictureBox1.Invalidate();
+            this.Text = formTitle;
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.ImageLocation = ofd.FileName;
+                pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+                this.Text = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //this.Text.i
+            if (this.Text == formTitle) saveAsToolStripMenuItem_Click(sender, e);
+            else
+            {
+                if (ofd.FileName != "") image.Save(ofd.FileName);
+                else image.Save(sfd.FileName);
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Graphics g = Graphics.FromImage(image);
+            Rectangle rect = pictureBox1.RectangleToScreen(pictureBox1.ClientRectangle);
+            g.CopyFromScreen(rect.Location, Point.Empty, pictureBox1.Size);
+            g.Dispose();
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                image.Save(sfd.FileName);
+                this.Text = System.IO.Path.GetFileNameWithoutExtension(sfd.FileName);
+            }
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -126,53 +188,6 @@ namespace image_editor
                 
             }
 
-        }
-
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            graphics.Clear(Color.White);
-            pictureBox1.Invalidate();
-            this.Text = formTitle;
-        }
-       
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                pictureBox1.ImageLocation = ofd.FileName;
-                pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-                this.Text = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
-            }
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //this.Text.i
-            if (this.Text == formTitle) saveAsToolStripMenuItem_Click(sender, e);
-            else
-            {
-                if (ofd.FileName != "") image.Save(ofd.FileName);
-                else image.Save(sfd.FileName);
-            }
-        }
-
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Graphics g = Graphics.FromImage(image);
-            Rectangle rect = pictureBox1.RectangleToScreen(pictureBox1.ClientRectangle);
-            g.CopyFromScreen(rect.Location, Point.Empty, pictureBox1.Size);
-            g.Dispose();
-
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                image.Save(sfd.FileName);
-                this.Text = System.IO.Path.GetFileNameWithoutExtension(sfd.FileName);
-            }
-        }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void pencil_Click(object sender, EventArgs e)
@@ -317,6 +332,7 @@ namespace image_editor
             if (cd.ShowDialog() == DialogResult.OK)
                 selectedColor.BackColor = cd.Color;
         }
+
 
     }
 
