@@ -11,7 +11,8 @@ namespace image_editor
 {
     public partial class Form1 : Form
     {
-        String Text = " test ";
+        const string formTitle = "untitled - image_editor";
+        String Txt = " test ";
         OpenFileDialog ofd;
         SaveFileDialog sfd;
         bool mouseHold = false;
@@ -36,7 +37,8 @@ namespace image_editor
             sfd.Filter = ofd.Filter;
             image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             graphics = Graphics.FromImage(image);
-            selectedColor.BackColor = Color.Black; ;
+            selectedColor.BackColor = Color.Black;
+            this.Text = formTitle;
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -71,7 +73,7 @@ namespace image_editor
                    
                     Font drawFont = new Font("Arial", 16);
                     SolidBrush drawBrush = new SolidBrush(Color.Black);
-                    graphics.DrawString(Text, drawFont, drawBrush, startP);
+                    graphics.DrawString(Txt, drawFont, drawBrush, startP);
                     pictureBox1.Invalidate();
                     break;
 
@@ -100,7 +102,7 @@ namespace image_editor
                 endP = e.Location;
                 x = e.X;
                 y = e.Y;
-                pictureBox1.Invalidate();
+
                 switch (tool)
                 {
                     case 1:
@@ -119,6 +121,13 @@ namespace image_editor
             }
 
         }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            graphics.Clear(Color.White);
+            pictureBox1.Invalidate();
+            this.Text = formTitle;
+        }
        
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -126,6 +135,18 @@ namespace image_editor
             {
                 pictureBox1.ImageLocation = ofd.FileName;
                 pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+                this.Text = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //this.Text.i
+            if (this.Text == formTitle) saveAsToolStripMenuItem_Click(sender, e);
+            else
+            {
+                if (ofd.FileName != "") image.Save(ofd.FileName);
+                else image.Save(sfd.FileName);
             }
         }
 
@@ -139,7 +160,13 @@ namespace image_editor
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 image.Save(sfd.FileName);
+                this.Text = System.IO.Path.GetFileNameWithoutExtension(sfd.FileName);
             }
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void buttonPencil_Click(object sender, EventArgs e)
@@ -244,7 +271,7 @@ namespace image_editor
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            Text = textBox1.Text;
+            Txt = textBox1.Text;
 
         }
 
@@ -281,4 +308,5 @@ namespace image_editor
         }
 
     }
+
 }
