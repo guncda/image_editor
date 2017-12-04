@@ -69,6 +69,8 @@
             this.selectedColor = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.Rectangle = new System.Windows.Forms.Button();
+            this.DrawText = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -444,11 +446,33 @@
             this.Rectangle.UseVisualStyleBackColor = true;
             this.Rectangle.Click += new System.EventHandler(this.button1_Click);
             // 
+            // DrawText
+            // 
+            this.DrawText.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.DrawText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DrawText.Location = new System.Drawing.Point(107, 26);
+            this.DrawText.Name = "DrawText";
+            this.DrawText.Size = new System.Drawing.Size(35, 30);
+            this.DrawText.TabIndex = 28;
+            this.DrawText.Text = "A";
+            this.DrawText.UseVisualStyleBackColor = true;
+            this.DrawText.Click += new System.EventHandler(this.DrawText_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(24, 63);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(117, 20);
+            this.textBox1.TabIndex = 29;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 501);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.DrawText);
             this.Controls.Add(this.Rectangle);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -530,6 +554,8 @@
         private System.Windows.Forms.Button selectedColor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Rectangle;
+        private System.Windows.Forms.Button DrawText;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

@@ -11,6 +11,7 @@ namespace image_editor
 {
     public partial class Form1 : Form
     {
+        String Text = " test ";
         OpenFileDialog ofd;
         SaveFileDialog sfd;
         bool mouseHold = false;
@@ -63,6 +64,19 @@ namespace image_editor
             }
             cX = e.X;
             cY = e.Y;
+            switch (tool)
+            {
+                case 3:
+                    
+                   
+                    Font drawFont = new Font("Arial", 16);
+                    SolidBrush drawBrush = new SolidBrush(Color.Black);
+                    graphics.DrawString(Text, drawFont, drawBrush, startP);
+                    pictureBox1.Invalidate();
+                    break;
+
+            }
+
         }
 
         private void mouseUp(object sender, MouseEventArgs e)
@@ -221,6 +235,17 @@ namespace image_editor
         private void button1_Click(object sender, EventArgs e)
         {
             tool = 2;
+        }
+
+        private void DrawText_Click(object sender, EventArgs e)
+        {
+            tool = 3;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Text = textBox1.Text;
+
         }
 
         private void btnLime_Click(object sender, EventArgs e)
