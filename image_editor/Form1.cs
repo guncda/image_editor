@@ -17,6 +17,7 @@ namespace image_editor
         SaveFileDialog sfd;
         bool mouseHold = false;
         Point startP = new Point(0, 0);
+        Point startPRec = new Point(0, 0);
         Point endP = new Point(0, 0);
         int x,
             y,
@@ -27,6 +28,7 @@ namespace image_editor
         int tool;
         Graphics graphics;
         Bitmap image;
+        Rectangle selectedArea;
 
         public Form1()
         {
@@ -41,6 +43,7 @@ namespace image_editor
             graphics = Graphics.FromImage(image);
             selectedColor.BackColor = Color.Black;
             this.Text = formTitle;
+            comboBox1.SelectedIndex = 1;
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -106,6 +109,19 @@ namespace image_editor
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawImage(image, 0, 0, image.Width, image.Height);
+
+            if (tool == 6)
+            {
+                selectedArea = new Rectangle(
+                    Math.Min(startPRec.X, endP.X),
+                    Math.Min(startPRec.Y, endP.Y),
+                    Math.Abs(endP.X - startPRec.X),
+                    Math.Abs(endP.Y - startPRec.Y));
+
+                e.Graphics.DrawRectangle(
+                    new Pen(Color.Blue) { DashPattern = new float[] { 5, 1.5f } },
+                    selectedArea);
+            }
         }
 
         private void mouseClick(object sender, MouseEventArgs e)
@@ -117,11 +133,17 @@ namespace image_editor
                 dX = e.X - cX;
                 dY = e.Y - cY;
             }
+
+            if (e.Button == MouseButtons.Right && tool == 6)
+            {
+                MouseClickMenu menu = new MouseClickMenu(pictureBox1, selectedArea);
+                pictureBox1.ContextMenu = menu;
+            }
         }
 
         private void mouseDown(object sender, MouseEventArgs e)
         {
-            startP = e.Location;
+            startP = startPRec = e.Location;
             if (e.Button == MouseButtons.Left)
             {
                 mouseHold = true;
@@ -179,6 +201,9 @@ namespace image_editor
                         graphics.FillEllipse(new SolidBrush(Color.White), e.X, e.Y, 20, 20);
                         pictureBox1.Invalidate();
                         break;
+                    case 6:
+                        pictureBox1.Invalidate();
+                        break;
                     default:
                         Console.WriteLine("ERROR: Unkwon tool");
                         break;
@@ -203,6 +228,11 @@ namespace image_editor
         private void eraser_Click(object sender, EventArgs e)
         {
             tool = 5;
+        }
+
+        private void btnRectSelect_Click(object sender, EventArgs e)
+        {
+            tool = 6;
         }
 
         public void btnBlack_Click(object sender, EventArgs e)
@@ -332,7 +362,6 @@ namespace image_editor
             if (cd.ShowDialog() == DialogResult.OK)
                 selectedColor.BackColor = cd.Color;
         }
-
 
     }
 

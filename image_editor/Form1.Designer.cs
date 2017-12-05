@@ -76,6 +76,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.eraser = new System.Windows.Forms.Button();
+            this.btnRectSelect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +86,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Location = new System.Drawing.Point(25, 90);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(650, 400);
+            this.pictureBox1.Size = new System.Drawing.Size(700, 400);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -103,7 +104,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(750, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -199,7 +200,7 @@
             // 
             this.pencil.Appearance = System.Windows.Forms.Appearance.Button;
             this.pencil.Image = global::image_editor.Properties.Resources.pencil;
-            this.pencil.Location = new System.Drawing.Point(25, 25);
+            this.pencil.Location = new System.Drawing.Point(90, 25);
             this.pencil.Name = "pencil";
             this.pencil.Size = new System.Drawing.Size(30, 30);
             this.pencil.TabIndex = 2;
@@ -210,7 +211,7 @@
             // btnBlack
             // 
             this.btnBlack.BackColor = System.Drawing.Color.Black;
-            this.btnBlack.Location = new System.Drawing.Point(300, 25);
+            this.btnBlack.Location = new System.Drawing.Point(350, 25);
             this.btnBlack.Name = "btnBlack";
             this.btnBlack.Size = new System.Drawing.Size(30, 30);
             this.btnBlack.TabIndex = 3;
@@ -220,7 +221,7 @@
             // btnGray50
             // 
             this.btnGray50.BackColor = System.Drawing.Color.Gray;
-            this.btnGray50.Location = new System.Drawing.Point(330, 25);
+            this.btnGray50.Location = new System.Drawing.Point(380, 25);
             this.btnGray50.Name = "btnGray50";
             this.btnGray50.Size = new System.Drawing.Size(30, 30);
             this.btnGray50.TabIndex = 4;
@@ -230,7 +231,7 @@
             // btnDarkRed
             // 
             this.btnDarkRed.BackColor = System.Drawing.Color.DarkRed;
-            this.btnDarkRed.Location = new System.Drawing.Point(360, 25);
+            this.btnDarkRed.Location = new System.Drawing.Point(410, 25);
             this.btnDarkRed.Name = "btnDarkRed";
             this.btnDarkRed.Size = new System.Drawing.Size(30, 30);
             this.btnDarkRed.TabIndex = 5;
@@ -240,7 +241,7 @@
             // btnRed
             // 
             this.btnRed.BackColor = System.Drawing.Color.Red;
-            this.btnRed.Location = new System.Drawing.Point(390, 25);
+            this.btnRed.Location = new System.Drawing.Point(440, 25);
             this.btnRed.Name = "btnRed";
             this.btnRed.Size = new System.Drawing.Size(30, 30);
             this.btnRed.TabIndex = 6;
@@ -250,7 +251,7 @@
             // btnOrange
             // 
             this.btnOrange.BackColor = System.Drawing.Color.Orange;
-            this.btnOrange.Location = new System.Drawing.Point(420, 25);
+            this.btnOrange.Location = new System.Drawing.Point(470, 25);
             this.btnOrange.Name = "btnOrange";
             this.btnOrange.Size = new System.Drawing.Size(30, 30);
             this.btnOrange.TabIndex = 7;
@@ -260,7 +261,7 @@
             // btnYellow
             // 
             this.btnYellow.BackColor = System.Drawing.Color.Yellow;
-            this.btnYellow.Location = new System.Drawing.Point(450, 25);
+            this.btnYellow.Location = new System.Drawing.Point(500, 25);
             this.btnYellow.Name = "btnYellow";
             this.btnYellow.Size = new System.Drawing.Size(30, 30);
             this.btnYellow.TabIndex = 8;
@@ -270,7 +271,7 @@
             // btnGreen
             // 
             this.btnGreen.BackColor = System.Drawing.Color.Green;
-            this.btnGreen.Location = new System.Drawing.Point(480, 25);
+            this.btnGreen.Location = new System.Drawing.Point(530, 25);
             this.btnGreen.Name = "btnGreen";
             this.btnGreen.Size = new System.Drawing.Size(30, 30);
             this.btnGreen.TabIndex = 9;
@@ -280,7 +281,7 @@
             // btnTurquoise
             // 
             this.btnTurquoise.BackColor = System.Drawing.Color.Turquoise;
-            this.btnTurquoise.Location = new System.Drawing.Point(510, 25);
+            this.btnTurquoise.Location = new System.Drawing.Point(560, 25);
             this.btnTurquoise.Name = "btnTurquoise";
             this.btnTurquoise.Size = new System.Drawing.Size(30, 30);
             this.btnTurquoise.TabIndex = 10;
@@ -290,7 +291,7 @@
             // btnIndigo
             // 
             this.btnIndigo.BackColor = System.Drawing.Color.Blue;
-            this.btnIndigo.Location = new System.Drawing.Point(540, 25);
+            this.btnIndigo.Location = new System.Drawing.Point(590, 25);
             this.btnIndigo.Name = "btnIndigo";
             this.btnIndigo.Size = new System.Drawing.Size(30, 30);
             this.btnIndigo.TabIndex = 11;
@@ -300,7 +301,7 @@
             // btnPurple
             // 
             this.btnPurple.BackColor = System.Drawing.Color.Purple;
-            this.btnPurple.Location = new System.Drawing.Point(570, 25);
+            this.btnPurple.Location = new System.Drawing.Point(620, 25);
             this.btnPurple.Name = "btnPurple";
             this.btnPurple.Size = new System.Drawing.Size(30, 30);
             this.btnPurple.TabIndex = 12;
@@ -310,7 +311,7 @@
             // btnWhite
             // 
             this.btnWhite.BackColor = System.Drawing.Color.White;
-            this.btnWhite.Location = new System.Drawing.Point(300, 55);
+            this.btnWhite.Location = new System.Drawing.Point(350, 55);
             this.btnWhite.Name = "btnWhite";
             this.btnWhite.Size = new System.Drawing.Size(30, 30);
             this.btnWhite.TabIndex = 13;
@@ -320,7 +321,7 @@
             // btnGray25
             // 
             this.btnGray25.BackColor = System.Drawing.Color.LightGray;
-            this.btnGray25.Location = new System.Drawing.Point(330, 55);
+            this.btnGray25.Location = new System.Drawing.Point(380, 55);
             this.btnGray25.Name = "btnGray25";
             this.btnGray25.Size = new System.Drawing.Size(30, 30);
             this.btnGray25.TabIndex = 14;
@@ -330,7 +331,7 @@
             // btnBrown
             // 
             this.btnBrown.BackColor = System.Drawing.Color.Brown;
-            this.btnBrown.Location = new System.Drawing.Point(360, 55);
+            this.btnBrown.Location = new System.Drawing.Point(410, 55);
             this.btnBrown.Name = "btnBrown";
             this.btnBrown.Size = new System.Drawing.Size(30, 30);
             this.btnBrown.TabIndex = 15;
@@ -340,7 +341,7 @@
             // btnRose
             // 
             this.btnRose.BackColor = System.Drawing.Color.Pink;
-            this.btnRose.Location = new System.Drawing.Point(390, 55);
+            this.btnRose.Location = new System.Drawing.Point(440, 55);
             this.btnRose.Name = "btnRose";
             this.btnRose.Size = new System.Drawing.Size(30, 30);
             this.btnRose.TabIndex = 16;
@@ -350,7 +351,7 @@
             // btnGolden
             // 
             this.btnGolden.BackColor = System.Drawing.Color.Gold;
-            this.btnGolden.Location = new System.Drawing.Point(420, 55);
+            this.btnGolden.Location = new System.Drawing.Point(470, 55);
             this.btnGolden.Name = "btnGolden";
             this.btnGolden.Size = new System.Drawing.Size(30, 30);
             this.btnGolden.TabIndex = 17;
@@ -360,7 +361,7 @@
             // btnLightYellow
             // 
             this.btnLightYellow.BackColor = System.Drawing.Color.LightYellow;
-            this.btnLightYellow.Location = new System.Drawing.Point(450, 55);
+            this.btnLightYellow.Location = new System.Drawing.Point(500, 55);
             this.btnLightYellow.Name = "btnLightYellow";
             this.btnLightYellow.Size = new System.Drawing.Size(30, 30);
             this.btnLightYellow.TabIndex = 18;
@@ -370,7 +371,7 @@
             // btnLime
             // 
             this.btnLime.BackColor = System.Drawing.Color.Lime;
-            this.btnLime.Location = new System.Drawing.Point(480, 55);
+            this.btnLime.Location = new System.Drawing.Point(530, 55);
             this.btnLime.Name = "btnLime";
             this.btnLime.Size = new System.Drawing.Size(30, 30);
             this.btnLime.TabIndex = 19;
@@ -380,7 +381,7 @@
             // btnLigthCyan
             // 
             this.btnLigthCyan.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.btnLigthCyan.Location = new System.Drawing.Point(510, 55);
+            this.btnLigthCyan.Location = new System.Drawing.Point(560, 55);
             this.btnLigthCyan.Name = "btnLigthCyan";
             this.btnLigthCyan.Size = new System.Drawing.Size(30, 30);
             this.btnLigthCyan.TabIndex = 20;
@@ -390,7 +391,7 @@
             // btnBlueGray
             // 
             this.btnBlueGray.BackColor = System.Drawing.Color.CadetBlue;
-            this.btnBlueGray.Location = new System.Drawing.Point(540, 55);
+            this.btnBlueGray.Location = new System.Drawing.Point(590, 55);
             this.btnBlueGray.Name = "btnBlueGray";
             this.btnBlueGray.Size = new System.Drawing.Size(30, 30);
             this.btnBlueGray.TabIndex = 21;
@@ -400,7 +401,7 @@
             // btnLavender
             // 
             this.btnLavender.BackColor = System.Drawing.Color.LavenderBlush;
-            this.btnLavender.Location = new System.Drawing.Point(570, 55);
+            this.btnLavender.Location = new System.Drawing.Point(620, 55);
             this.btnLavender.Name = "btnLavender";
             this.btnLavender.Size = new System.Drawing.Size(30, 30);
             this.btnLavender.TabIndex = 22;
@@ -410,7 +411,7 @@
             // colorPalette
             // 
             this.colorPalette.Image = ((System.Drawing.Image)(resources.GetObject("colorPalette.Image")));
-            this.colorPalette.Location = new System.Drawing.Point(600, 25);
+            this.colorPalette.Location = new System.Drawing.Point(650, 25);
             this.colorPalette.Name = "colorPalette";
             this.colorPalette.Size = new System.Drawing.Size(75, 45);
             this.colorPalette.TabIndex = 23;
@@ -420,7 +421,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(250, 72);
+            this.label1.Location = new System.Drawing.Point(300, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 25;
@@ -429,7 +430,7 @@
             // selectedColor
             // 
             this.selectedColor.BackColor = System.Drawing.Color.Black;
-            this.selectedColor.Location = new System.Drawing.Point(250, 25);
+            this.selectedColor.Location = new System.Drawing.Point(300, 25);
             this.selectedColor.Name = "selectedColor";
             this.selectedColor.Size = new System.Drawing.Size(45, 45);
             this.selectedColor.TabIndex = 24;
@@ -438,7 +439,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(600, 72);
+            this.label2.Location = new System.Drawing.Point(650, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 26;
@@ -446,7 +447,7 @@
             // 
             // Rectangle
             // 
-            this.Rectangle.Location = new System.Drawing.Point(170, 25);
+            this.Rectangle.Location = new System.Drawing.Point(235, 25);
             this.Rectangle.Name = "Rectangle";
             this.Rectangle.Size = new System.Drawing.Size(30, 30);
             this.Rectangle.TabIndex = 27;
@@ -457,7 +458,7 @@
             // 
             this.DrawText.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.DrawText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DrawText.Location = new System.Drawing.Point(85, 25);
+            this.DrawText.Location = new System.Drawing.Point(150, 25);
             this.DrawText.Name = "DrawText";
             this.DrawText.Size = new System.Drawing.Size(30, 30);
             this.DrawText.TabIndex = 28;
@@ -467,7 +468,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(25, 55);
+            this.textBox1.Location = new System.Drawing.Point(90, 55);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(90, 20);
             this.textBox1.TabIndex = 29;
@@ -476,7 +477,7 @@
             // brush
             // 
             this.brush.Image = ((System.Drawing.Image)(resources.GetObject("brush.Image")));
-            this.brush.Location = new System.Drawing.Point(120, 25);
+            this.brush.Location = new System.Drawing.Point(185, 25);
             this.brush.Name = "brush";
             this.brush.Size = new System.Drawing.Size(45, 45);
             this.brush.TabIndex = 30;
@@ -490,7 +491,7 @@
             5,
             10,
             15});
-            this.comboBox1.Location = new System.Drawing.Point(120, 65);
+            this.comboBox1.Location = new System.Drawing.Point(185, 65);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(45, 21);
             this.comboBox1.TabIndex = 31;
@@ -504,19 +505,30 @@
             // eraser
             // 
             this.eraser.Image = ((System.Drawing.Image)(resources.GetObject("eraser.Image")));
-            this.eraser.Location = new System.Drawing.Point(55, 25);
+            this.eraser.Location = new System.Drawing.Point(120, 25);
             this.eraser.Name = "eraser";
             this.eraser.Size = new System.Drawing.Size(30, 30);
             this.eraser.TabIndex = 32;
             this.eraser.UseVisualStyleBackColor = true;
             this.eraser.Click += new System.EventHandler(this.eraser_Click);
             // 
+            // btnRectSelect
+            // 
+            this.btnRectSelect.Image = ((System.Drawing.Image)(resources.GetObject("btnRectSelect.Image")));
+            this.btnRectSelect.Location = new System.Drawing.Point(25, 25);
+            this.btnRectSelect.Name = "btnRectSelect";
+            this.btnRectSelect.Size = new System.Drawing.Size(60, 60);
+            this.btnRectSelect.TabIndex = 33;
+            this.btnRectSelect.UseVisualStyleBackColor = true;
+            this.btnRectSelect.Click += new System.EventHandler(this.btnRectSelect_Click);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 501);
+            this.ClientSize = new System.Drawing.Size(750, 520);
+            this.Controls.Add(this.btnRectSelect);
             this.Controls.Add(this.eraser);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.brush);
@@ -610,6 +622,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button eraser;
+        private System.Windows.Forms.Button btnRectSelect;
     }
 }
 
