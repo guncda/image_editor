@@ -29,6 +29,8 @@ namespace image_editor
         Graphics graphics;
         Bitmap image;
         Rectangle selectedArea;
+        Bitmap selectedBitmap;
+        bool moveSelection = false;
 
         public Form1()
         {
@@ -37,8 +39,6 @@ namespace image_editor
             sfd = new SaveFileDialog();
             ofd.Filter = "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff";
             sfd.Filter = ofd.Filter;
-            //this.DragEnter += new DragEventHandler(Form1_DragEnter);
-            //this.DragDrop += new DragEventHandler(Form1_DragDrop);
             image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             graphics = Graphics.FromImage(image);
             selectedColor.BackColor = Color.Black;
@@ -64,6 +64,8 @@ namespace image_editor
             graphics.Clear(Color.White);
             pictureBox1.Invalidate();
             this.Text = formTitle;
+
+            deselect();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,18 +75,20 @@ namespace image_editor
                 pictureBox1.ImageLocation = ofd.FileName;
                 pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
                 this.Text = System.IO.Path.GetFileNameWithoutExtension(ofd.FileName);
+
+                deselect();
             }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //this.Text.i
             if (this.Text == formTitle) saveAsToolStripMenuItem_Click(sender, e);
             else
             {
                 if (ofd.FileName != "") image.Save(ofd.FileName);
                 else image.Save(sfd.FileName);
             }
+            deselect();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -99,6 +103,7 @@ namespace image_editor
                 image.Save(sfd.FileName);
                 this.Text = System.IO.Path.GetFileNameWithoutExtension(sfd.FileName);
             }
+            deselect();
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -122,6 +127,9 @@ namespace image_editor
                     new Pen(Color.Blue) { DashPattern = new float[] { 5, 1.5f } },
                     selectedArea);
             }
+
+            if (moveSelection)
+                e.Graphics.DrawImage(selectedBitmap, endP);
         }
 
         private void mouseClick(object sender, MouseEventArgs e)
@@ -134,9 +142,11 @@ namespace image_editor
                 dY = e.Y - cY;
             }
 
-            if (e.Button == MouseButtons.Right && tool == 6)
+            if (e.Button == MouseButtons.Right)
             {
-                MouseClickMenu menu = new MouseClickMenu(pictureBox1, selectedArea);
+                MouseClickMenu menu;
+
+                menu = new MouseClickMenu(pictureBox1, selectedArea, graphics);
                 pictureBox1.ContextMenu = menu;
             }
         }
@@ -163,6 +173,23 @@ namespace image_editor
 
             }
 
+            if (selectedArea.Contains(startP))
+            {
+                moveSelection = true;
+                try
+                {
+                    selectedBitmap = new Bitmap(selectedArea.Width, selectedArea.Height);
+                    using (Graphics g = Graphics.FromImage(selectedBitmap))
+                    {
+                        Rectangle r = new Rectangle(0, 0, selectedArea.Width, selectedArea.Height);
+                        g.DrawImage(pictureBox1.Image, r, selectedArea, GraphicsUnit.Pixel);
+                    }
+
+                    graphics.FillRectangle(new SolidBrush(Color.White), selectedArea);
+                }
+                catch (ArgumentNullException a) { }
+            }
+
         }
 
         private void mouseUp(object sender, MouseEventArgs e)
@@ -176,6 +203,12 @@ namespace image_editor
                     pictureBox1.Invalidate();
                     break;
 
+            }
+
+            if (moveSelection)
+            {
+                moveSelection = false;
+                graphics.DrawImage(selectedBitmap, endP);
             }
         }
 
@@ -210,154 +243,196 @@ namespace image_editor
                 }
 
                 startP = endP;
+
+                if (moveSelection)
+                {
+                    //graphics.DrawImage(selectedBitmap, endP);
+                    pictureBox1.Invalidate();
+                }
                 
             }
 
         }
 
+        private void deselect()
+        {
+            tool = 0;
+            pictureBox1.Invalidate();
+        }
+
         private void pencil_Click(object sender, EventArgs e)
         {
+            deselect();
             tool = 1;
         }
 
         private void brush_Click(object sender, EventArgs e)
         {
+            deselect();
             tool = 4;
         }
 
         private void eraser_Click(object sender, EventArgs e)
         {
+            deselect();
             tool = 5;
         }
 
         private void btnRectSelect_Click(object sender, EventArgs e)
         {
+            deselect();
             tool = 6;
+
+            startPRec = endP = new Point(0, 0);
         }
 
         public void btnBlack_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Black;
         }
 
         protected void btnGray50_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Gray;
         }
 
         private void btnDarkRed_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.DarkRed;
         }
 
         private void btnRed_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Red;
         }
 
         private void btnOrange_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Orange;
         }
 
         private void btnYellow_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Yellow;
         }
 
         private void btnGreen_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Green;
         }
 
         private void btnTurquoise_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Turquoise;
         }
 
         private void btnIndigo_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Blue;
         }
 
         private void btnPurple_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Purple;
         }
 
         private void btnWhite_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.White;
         }
 
         private void btnGray25_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.LightGray;
         }
 
         private void btnBrown_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Brown;
         }
 
         private void btnRose_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Pink;
         }
 
         private void btnGolden_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Gold;
         }
 
         private void btnLightYellow_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.LightYellow;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            deselect();
             tool = 2;
         }
 
         private void DrawText_Click(object sender, EventArgs e)
         {
+            deselect();
             tool = 3;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            deselect();
             Txt = textBox1.Text;
 
         }
 
         private void btnLime_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Lime;
         }
 
         private void btnLigthCyan_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.PaleTurquoise;
         }
 
         private void btnBlueGray_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.CadetBlue;
         }
 
         private void btnLavender_Click(object sender, EventArgs e)
         {
+            deselect();
             selectedColor.BackColor = Color.Lavender;
         }
 
         private void colorPalette_Click(object sender, EventArgs e)
         {
+            deselect();
+            
             ColorDialog cd = new ColorDialog();
             cd.AllowFullOpen = true;
             cd.ShowHelp = true;
             cd.Color = selectedColor.BackColor;
-            //cd.Color = textBox1.ForeColor;
 
             if (cd.ShowDialog() == DialogResult.OK)
                 selectedColor.BackColor = cd.Color;

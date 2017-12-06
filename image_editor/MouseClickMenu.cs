@@ -13,29 +13,40 @@ namespace image_editor
 
         PictureBox picture;
         Rectangle src;
+        Graphics graphics;
 
-        public MouseClickMenu(PictureBox p, Rectangle r)
+        public MouseClickMenu(PictureBox p, Rectangle r, Graphics g)
         {
+            this.graphics = g;
             this.picture = p;
             this.src = r;
+
             this.MenuItems.Add("Copy", new EventHandler(copy));
             this.MenuItems.Add("Paste", new EventHandler(paste));
         }
 
         private void copy(object sender, EventArgs e)
         {
-            Bitmap bmp = new Bitmap(src.Width, src.Height);
-            using (Graphics g = Graphics.FromImage(bmp))
+            try
             {
-                Rectangle r = new Rectangle(0, 0, src.Width, src.Height);
-                g.DrawImage(picture.Image, r, src, GraphicsUnit.Pixel);
+                Bitmap bmp = new Bitmap(src.Width, src.Height);
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    Rectangle r = new Rectangle(0, 0, src.Width, src.Height);
+                    g.DrawImage(picture.Image, r, src, GraphicsUnit.Pixel);
+                }
+                Clipboard.SetImage(bmp);
             }
-            Clipboard.SetImage(bmp);
+            catch (ArgumentNullException a) { }
         }
 
         private void paste(object sender, EventArgs e)
         {
-            picture.Image = Clipboard.GetImage();
+            Image i = Clipboard.GetImage();
+            if (i == null) return;
+
+            graphics.DrawImage(i, new Point(0, 0));
+            picture.Invalidate();
         }
 
     }
