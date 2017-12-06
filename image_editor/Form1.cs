@@ -288,97 +288,97 @@ namespace image_editor
 
         public void btnBlack_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Black;
         }
 
         protected void btnGray50_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Gray;
         }
 
         private void btnDarkRed_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.DarkRed;
         }
 
         private void btnRed_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Red;
         }
 
         private void btnOrange_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Orange;
         }
 
         private void btnYellow_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Yellow;
         }
 
         private void btnGreen_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Green;
         }
 
         private void btnTurquoise_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Turquoise;
         }
 
         private void btnIndigo_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Blue;
         }
 
         private void btnPurple_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Purple;
         }
 
         private void btnWhite_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.White;
         }
 
         private void btnGray25_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.LightGray;
         }
 
         private void btnBrown_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Brown;
         }
 
         private void btnRose_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Pink;
         }
 
         private void btnGolden_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Gold;
         }
 
         private void btnLightYellow_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.LightYellow;
         }
 
@@ -403,31 +403,31 @@ namespace image_editor
 
         private void btnLime_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Lime;
         }
 
         private void btnLigthCyan_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.PaleTurquoise;
         }
 
         private void btnBlueGray_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.CadetBlue;
         }
 
         private void btnLavender_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             selectedColor.BackColor = Color.Lavender;
         }
 
         private void colorPalette_Click(object sender, EventArgs e)
         {
-            deselect();
+            //deselect();
             
             ColorDialog cd = new ColorDialog();
             cd.AllowFullOpen = true;
