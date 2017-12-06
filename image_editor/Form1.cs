@@ -115,6 +115,18 @@ namespace image_editor
         {
             e.Graphics.DrawImage(image, 0, 0, image.Width, image.Height);
 
+            if (tool == 2)
+            {
+                selectedArea = new Rectangle(
+                    Math.Min(startPRec.X, endP.X),
+                    Math.Min(startPRec.Y, endP.Y),
+                    Math.Abs(endP.X - startPRec.X),
+                    Math.Abs(endP.Y - startPRec.Y));
+
+                e.Graphics.DrawRectangle(
+                    new Pen(selectedColor.BackColor), selectedArea);
+            }
+
             if (tool == 6)
             {
                 selectedArea = new Rectangle(
@@ -195,7 +207,7 @@ namespace image_editor
         private void mouseUp(object sender, MouseEventArgs e)
         {
             mouseHold = false;
-            switch (tool)
+            /*switch (tool)
             {
                 case 2:
                     Rectangle rec = new Rectangle(startP.X, startP.Y, Math.Abs(e.X - startP.X), Math.Abs(e.Y - startP.Y));
@@ -203,7 +215,7 @@ namespace image_editor
                     pictureBox1.Invalidate();
                     break;
 
-            }
+            }*/
 
             if (moveSelection)
             {
@@ -224,6 +236,9 @@ namespace image_editor
                 {
                     case 1:
                         graphics.DrawLine(new Pen(selectedColor.BackColor), startP, endP);
+                        pictureBox1.Invalidate();
+                        break;
+                    case 2:
                         pictureBox1.Invalidate();
                         break;
                     case 4:
