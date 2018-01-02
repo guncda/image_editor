@@ -77,6 +77,10 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.eraser = new System.Windows.Forms.Button();
             this.btnRectSelect = new System.Windows.Forms.Button();
+            this.contrast_text = new System.Windows.Forms.TextBox();
+            this.brightness_value = new System.Windows.Forms.TextBox();
+            this.contrast = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -104,7 +108,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(750, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(895, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -523,12 +527,52 @@
             this.btnRectSelect.UseVisualStyleBackColor = true;
             this.btnRectSelect.Click += new System.EventHandler(this.btnRectSelect_Click);
             // 
+            // contrast_text
+            // 
+            this.contrast_text.Location = new System.Drawing.Point(836, 31);
+            this.contrast_text.Name = "contrast_text";
+            this.contrast_text.Size = new System.Drawing.Size(39, 20);
+            this.contrast_text.TabIndex = 34;
+            this.contrast_text.TextChanged += new System.EventHandler(this.contrast_text_TextChanged);
+            // 
+            // brightness_value
+            // 
+            this.brightness_value.Location = new System.Drawing.Point(836, 62);
+            this.brightness_value.Name = "brightness_value";
+            this.brightness_value.Size = new System.Drawing.Size(38, 20);
+            this.brightness_value.TabIndex = 35;
+            this.brightness_value.TextChanged += new System.EventHandler(this.brightness_value_TextChanged);
+            // 
+            // contrast
+            // 
+            this.contrast.Location = new System.Drawing.Point(733, 29);
+            this.contrast.Name = "contrast";
+            this.contrast.Size = new System.Drawing.Size(97, 22);
+            this.contrast.TabIndex = 37;
+            this.contrast.Text = "Set Contrast";
+            this.contrast.UseVisualStyleBackColor = true;
+            this.contrast.Click += new System.EventHandler(this.contrast_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(731, 57);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 24);
+            this.button1.TabIndex = 38;
+            this.button1.Text = "Set Brightness";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 520);
+            this.ClientSize = new System.Drawing.Size(895, 520);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.contrast);
+            this.Controls.Add(this.brightness_value);
+            this.Controls.Add(this.contrast_text);
             this.Controls.Add(this.btnRectSelect);
             this.Controls.Add(this.eraser);
             this.Controls.Add(this.comboBox1);
@@ -625,6 +669,10 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button eraser;
         private System.Windows.Forms.Button btnRectSelect;
+        private System.Windows.Forms.TextBox contrast_text;
+        private System.Windows.Forms.TextBox brightness_value;
+        private System.Windows.Forms.Button contrast;
+        private System.Windows.Forms.Button button1;
     }
 }
 
