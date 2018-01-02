@@ -12,7 +12,7 @@ namespace image_editor
     public partial class Form1 : Form
     {
         const string formTitle = "untitled - image_editor";
-        String Txt = " test ";
+        String Txt = " ";
         OpenFileDialog ofd;
         SaveFileDialog sfd;
         bool mouseHold = false;
@@ -56,6 +56,9 @@ namespace image_editor
             string[] tmp = (string[])e.Data.GetData(DataFormats.FileDrop);
             pictureBox1.ImageLocation = tmp[0];
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            graphics = Graphics.FromImage(image);
+
             this.Text = System.IO.Path.GetFileNameWithoutExtension(tmp[0]);
         }
 
@@ -207,15 +210,15 @@ namespace image_editor
         private void mouseUp(object sender, MouseEventArgs e)
         {
             mouseHold = false;
-            /*switch (tool)
+            switch (tool)
             {
                 case 2:
                     Rectangle rec = new Rectangle(startP.X, startP.Y, Math.Abs(e.X - startP.X), Math.Abs(e.Y - startP.Y));
                     graphics.DrawRectangle(new Pen(selectedColor.BackColor), rec);
                     pictureBox1.Invalidate();
                     break;
-
-            }*/
+                
+            }
 
             if (moveSelection)
             {
@@ -413,6 +416,11 @@ namespace image_editor
         {
             deselect();
             Txt = textBox1.Text;
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
 

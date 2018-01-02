@@ -447,6 +447,7 @@
             // 
             // Rectangle
             // 
+            this.Rectangle.Image = ((System.Drawing.Image)(resources.GetObject("Rectangle.Image")));
             this.Rectangle.Location = new System.Drawing.Point(235, 25);
             this.Rectangle.Name = "Rectangle";
             this.Rectangle.Size = new System.Drawing.Size(30, 30);
@@ -564,6 +565,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
