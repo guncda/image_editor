@@ -135,7 +135,7 @@ namespace image_editor
             System.Drawing.Image img = System.Drawing.Image.FromFile(tmp[0]);
             pictureBox1.Size = new System.Drawing.Size(img.Width, img.Height);
 
-            image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            image = new Bitmap(tmp[0]);
             graphics = Graphics.FromImage(image);
 
             this.Text = System.IO.Path.GetFileNameWithoutExtension(tmp[0]);
