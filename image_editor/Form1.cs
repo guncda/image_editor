@@ -35,7 +35,7 @@ namespace image_editor
         Rectangle drawingArea;
         Bitmap selectedBitmap;
         bool moveSelection = false;
-        int contrast_value = 0;
+        double contrast_value = 0;
         int brightness = 0;
         String fileName = "";
         int cntSelect = 0;
@@ -59,10 +59,6 @@ namespace image_editor
         {
             Bitmap temp = (Bitmap)image;
             Bitmap bmap = (Bitmap)temp.Clone();
-            if (contrast < -100) contrast = -100;
-            if (contrast > 100) contrast = 100;
-            contrast = (100.0 + contrast) / 100.0;
-            contrast *= contrast;
             Color c;
             for (int i = 0; i < bmap.Width; i++)
             {
@@ -70,49 +66,43 @@ namespace image_editor
                 {
                     c = bmap.GetPixel(i, j);
                     double pR = c.R / 255.0;
-                    pR -= 0.5;
-                    pR *= contrast;
-                    pR += 0.5;
+                    pR = ((contrast * pR ) + (0.5 * (1 - contrast)));
                     pR *= 255;
                     if (pR < 0) pR = 0;
                     if (pR > 255) pR = 255;
 
                     double pG = c.G / 255.0;
-                    pG -= 0.5;
-                    pG *= contrast;
-                    pG += 0.5;
+                    pG = ((contrast * pG) + (0.5 * (1 - contrast)));
                     pG *= 255;
                     if (pG < 0) pG = 0;
                     if (pG > 255) pG = 255;
 
                     double pB = c.B / 255.0;
-                    pB -= 0.5;
-                    pB *= contrast;
-                    pB += 0.5;
+                    pB = ((contrast * pB) + (0.5 * (1 - contrast)));
                     pB *= 255;
                     if (pB < 0) pB = 0;
                     if (pB > 255) pB = 255;
 
-                    bmap.SetPixel(i, j,
-        Color.FromArgb((byte)pR, (byte)pG, (byte)pB));
+                    bmap.SetPixel(i, j, Color.FromArgb((byte)pR, (byte)pG, (byte)pB));
                 }
             }
             image = (Bitmap)bmap.Clone();
+            graphics = Graphics.FromImage(image);
         }
 
         public void SetBrightness(int brightness)
         {
             
-            Bitmap temp = (Bitmap)image;
-            Bitmap bmap = (Bitmap)temp.Clone();
+            
+            
             if (brightness < -255) brightness = -255;
             if (brightness > 255) brightness = 255;
             Color c;
-            for (int i = 0; i < bmap.Width; i++)
+            for (int i = 0; i < image.Width; i++)
             {
-                for (int j = 0; j < bmap.Height; j++)
+                for (int j = 0; j < image.Height; j++)
                 {
-                    c = bmap.GetPixel(i, j);
+                    c = image.GetPixel(i, j);
                     int cR = c.R + brightness;
                     int cG = c.G + brightness;
                     int cB = c.B + brightness;
@@ -126,10 +116,10 @@ namespace image_editor
                     if (cB < 0) cB = 1;
                     if (cB > 255) cB = 255;
 
-                    bmap.SetPixel(i, j, Color.FromArgb((byte)cR, (byte)cG, (byte)cB));
+                    image.SetPixel(i, j, Color.FromArgb((byte)cR, (byte)cG, (byte)cB));
                 }
             }
-            image = (Bitmap)bmap.Clone();
+            
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -576,7 +566,7 @@ namespace image_editor
 
         private void contrast_Click(object sender, EventArgs e)
         {
-            contrast_value = Int32.Parse(contrast_text.Text);
+            contrast_value = Convert.ToDouble(contrast_text.Text);
             SetContrast(contrast_value);
             pictureBox1.Invalidate();
         }
