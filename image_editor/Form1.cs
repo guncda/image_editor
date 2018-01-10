@@ -102,6 +102,7 @@ namespace image_editor
 
         public void SetBrightness(int brightness)
         {
+            
             Bitmap temp = (Bitmap)image;
             Bitmap bmap = (Bitmap)temp.Clone();
             if (brightness < -255) brightness = -255;
@@ -575,23 +576,26 @@ namespace image_editor
 
         private void contrast_Click(object sender, EventArgs e)
         {
+            contrast_value = Int32.Parse(contrast_text.Text);
             SetContrast(contrast_value);
             pictureBox1.Invalidate();
         }
 
         private void contrast_text_TextChanged(object sender, EventArgs e)
         {
-            contrast_value = Int32.Parse(contrast_text.Text);
+           
         }
 
         private void brightness_value_TextChanged(object sender, EventArgs e)
         {
-            brightness = Int32.Parse(brightness_value.Text);
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            brightness = Int32.Parse(brightness_value.Text);
             SetBrightness(brightness);
+            pictureBox1.Invalidate();
         }
 
         private void btnLime_Click(object sender, EventArgs e)
