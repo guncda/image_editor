@@ -30,15 +30,17 @@ namespace image_editor
             dY;
         int tool;
         Graphics graphics;
-        Bitmap image;
-        Rectangle selectedArea;
+        //Bitmap image;
+        //Rectangle selectedArea;
         Rectangle drawingArea;
         Bitmap selectedBitmap;
         bool moveSelection = false;
         double contrast_value = 0;
         int brightness = 0;
         String fileName = "";
-        int cntSelect = 0;
+        //int cntSelect = 0;
+        //Bitmap background;
+        bool isImage = false;
 
         PictureBox image2 = new PictureBox();
 
@@ -49,15 +51,15 @@ namespace image_editor
             sfd = new SaveFileDialog();
             ofd.Filter = "BMP|*.bmp|GIF|*.gif|JPG|*.jpg;*.jpeg|PNG|*.png|TIFF|*.tif;*.tiff";
             sfd.Filter = ofd.Filter;
-            image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            graphics = Graphics.FromImage(image);
+            Globals.image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            graphics = Graphics.FromImage(Globals.image);
             selectedColor.BackColor = Color.Black;
             this.Text = formTitle;
             comboBox1.SelectedIndex = 1;
         }
         public void SetContrast(double contrast)
         {
-            Bitmap temp = (Bitmap)image;
+            Bitmap temp = (Bitmap)Globals.image;
             Bitmap bmap = (Bitmap)temp.Clone();
             Color c;
             for (int i = 0; i < bmap.Width; i++)
@@ -86,8 +88,8 @@ namespace image_editor
                     bmap.SetPixel(i, j, Color.FromArgb((byte)pR, (byte)pG, (byte)pB));
                 }
             }
-            image = (Bitmap)bmap.Clone();
-            graphics = Graphics.FromImage(image);
+            Globals.image = (Bitmap)bmap.Clone();
+            graphics = Graphics.FromImage(Globals.image);
         }
 
         public void SetBrightness(int brightness)
@@ -98,11 +100,11 @@ namespace image_editor
             if (brightness < -255) brightness = -255;
             if (brightness > 255) brightness = 255;
             Color c;
-            for (int i = 0; i < image.Width; i++)
+            for (int i = 0; i < Globals.image.Width; i++)
             {
-                for (int j = 0; j < image.Height; j++)
+                for (int j = 0; j < Globals.image.Height; j++)
                 {
-                    c = image.GetPixel(i, j);
+                    c = Globals.image.GetPixel(i, j);
                     int cR = c.R + brightness;
                     int cG = c.G + brightness;
                     int cB = c.B + brightness;
@@ -116,7 +118,7 @@ namespace image_editor
                     if (cB < 0) cB = 1;
                     if (cB > 255) cB = 255;
 
-                    image.SetPixel(i, j, Color.FromArgb((byte)cR, (byte)cG, (byte)cB));
+                    Globals.image.SetPixel(i, j, Color.FromArgb((byte)cR, (byte)cG, (byte)cB));
                 }
             }
             
@@ -135,24 +137,27 @@ namespace image_editor
             System.Drawing.Image img = System.Drawing.Image.FromFile(tmp[0]);
             pictureBox1.Size = new System.Drawing.Size(img.Width, img.Height);
 
-            image = new Bitmap(tmp[0]);
-            graphics = Graphics.FromImage(image);
+            Globals.image = new Bitmap(tmp[0]);
+            graphics = Graphics.FromImage(Globals.image);
 
             this.Text = System.IO.Path.GetFileNameWithoutExtension(tmp[0]);
             fileName = tmp[0];
+            isImage = true;
             deselect();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            isImage = false;
             graphics.Clear(Color.White);
             pictureBox1.Size = new System.Drawing.Size(700, 400);
             pictureBox1.Invalidate();
             this.Text = formTitle;
 
-            selectedArea = new Rectangle(0,0,0,0);
+            Globals.selectedArea = new Rectangle(0,0,0,0);
 
             deselect();
+            isImage = false;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -166,10 +171,11 @@ namespace image_editor
 
                 System.Drawing.Image img = System.Drawing.Image.FromFile(ofd.FileName);
                 pictureBox1.Size = new System.Drawing.Size(img.Width, img.Height);
-                image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                graphics = Graphics.FromImage(image);
+                Globals.image = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                graphics = Graphics.FromImage(Globals.image);
 
                 deselect();
+                isImage = true;
             }
         }
 
@@ -178,27 +184,27 @@ namespace image_editor
             if (this.Text == formTitle) saveAsToolStripMenuItem_Click(sender, e);
             else
             {
-                Graphics g = Graphics.FromImage(image);
+                Graphics g = Graphics.FromImage(Globals.image);
                 Rectangle rect = pictureBox1.RectangleToScreen(pictureBox1.ClientRectangle);
                 g.CopyFromScreen(rect.Location, Point.Empty, pictureBox1.Size);
                 g.Dispose();
 
-                if (fileName != "") image.Save(fileName);
-                else image.Save(sfd.FileName);
+                if (fileName != "") Globals.image.Save(fileName);
+                else Globals.image.Save(sfd.FileName);
             }
             deselect();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Graphics g = Graphics.FromImage(image);
+            Graphics g = Graphics.FromImage(Globals.image);
             Rectangle rect = pictureBox1.RectangleToScreen(pictureBox1.ClientRectangle);
             g.CopyFromScreen(rect.Location, Point.Empty, pictureBox1.Size);
             g.Dispose();
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                image.Save(sfd.FileName);
+                Globals.image.Save(sfd.FileName);
                 this.Text = System.IO.Path.GetFileNameWithoutExtension(sfd.FileName);
             }
             deselect();
@@ -211,12 +217,7 @@ namespace image_editor
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(image, 0, 0, image.Width, image.Height);
-
-            /*Graphics g = Graphics.FromImage(image);
-            Rectangle rect = pictureBox1.RectangleToScreen(pictureBox1.ClientRectangle);
-            g.CopyFromScreen(rect.Location, Point.Empty, pictureBox1.Size);
-            g.Dispose();*/
+            e.Graphics.DrawImage(Globals.image, 0, 0, Globals.image.Width, Globals.image.Height);
 
             if (tool == 2)
             {
@@ -232,7 +233,7 @@ namespace image_editor
 
             if (tool == 6)
             {
-                selectedArea = new Rectangle(
+                Globals.selectedArea = new Rectangle(
                     Math.Min(startPRec.X, endP.X),
                     Math.Min(startPRec.Y, endP.Y),
                     Math.Abs(endP.X - startPRec.X),
@@ -240,7 +241,7 @@ namespace image_editor
 
                 e.Graphics.DrawRectangle(
                     new Pen(Color.Blue) { DashPattern = new float[] { 5, 1.5f } },
-                    selectedArea);
+                    Globals.selectedArea);
             }
 
             if (moveSelection)
@@ -263,7 +264,7 @@ namespace image_editor
             {
                 MouseClickMenu menu;
 
-                menu = new MouseClickMenu(pictureBox1, selectedArea, graphics);
+                menu = new MouseClickMenu(pictureBox1, Globals.selectedArea, graphics);
                 pictureBox1.ContextMenu = menu;
             }
         }
@@ -292,50 +293,42 @@ namespace image_editor
             }
 
 
-            if (selectedArea.Contains(startP))
+            if (Globals.selectedArea.Contains(startP))
             {
                 moveSelection = true;
                 tool = 0;
                 try
                 {
                     deselect();
-                    selectedBitmap = new Bitmap(selectedArea.Width, selectedArea.Height);
-                    //using (Graphics g = Graphics.FromImage(selectedBitmap))
-                    //{
+                    selectedBitmap = new Bitmap(Globals.selectedArea.Width, Globals.selectedArea.Height);
                     Graphics g = Graphics.FromImage(selectedBitmap);
-                        Rectangle r = new Rectangle(selectedArea.X, selectedArea.Y, selectedArea.Width, selectedArea.Height);
-                        //g.DrawImage(pictureBox1.Image, r, selectedArea, GraphicsUnit.Pixel);
+                    Rectangle r = new Rectangle(Globals.selectedArea.X, Globals.selectedArea.Y,
+                        Globals.selectedArea.Width, Globals.selectedArea.Height);
 
-                        Rectangle rect = pictureBox1.RectangleToScreen(pictureBox1.ClientRectangle);
-                        g.CopyFromScreen(
-                            new Point(rect.Location.X + r.Location.X, rect.Location.Y + r.Location.Y),
-                            new Point(-1, -1), selectedBitmap.Size);
-                        /*g.DrawImage(selectedBitmap, rect, selectedArea, GraphicsUnit.Pixel);
-                        g.Dispose();*/
-                    //}
+                    Rectangle rect = pictureBox1.RectangleToScreen(pictureBox1.ClientRectangle);
+                    g.CopyFromScreen(
+                        new Point(rect.Location.X + r.Location.X, rect.Location.Y + r.Location.Y),
+                        new Point(-1, -1), selectedBitmap.Size);
 
-                        //if (cntSelect == 0)
-                        {
-                            graphics.FillRectangle(new SolidBrush(Color.White), selectedArea);
-                            cntSelect++;
+                    if (Globals.cntSelect == 0)
+                    {
+                        graphics = Graphics.FromImage(Globals.image);
 
-                            /*image2.Size = pictureBox1.Size;
-                            image2.Image = image;
-
-                            image2.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-                            image2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mouseClick);
-                            image2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.image2_mouseDown);
-                            image2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mouseMove);
-                            image2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mouseUp);*/
-                        }
+                        Globals.background = (Bitmap)Globals.image.Clone();
+                        Graphics backgroundGraphics = Graphics.FromImage(Globals.background);
+                        backgroundGraphics.FillRectangle(new SolidBrush(Color.White), Globals.selectedArea);
+                        graphics.FillRectangle(new SolidBrush(Color.White), Globals.selectedArea);
+                        Globals.cntSelect++;
+                        pictureBox1.Invalidate();
+                    }
+                    else
+                    {
+                        graphics.Clear(Color.White);
+                        graphics.DrawImage(Globals.background, Point.Empty);
+                    }
                 }
                 catch (ArgumentNullException a) { }
             }
-
-        }
-
-        private void image2_mouseDown(object sender, MouseEventArgs e)
-        {
 
         }
 
@@ -356,7 +349,18 @@ namespace image_editor
 
                 moveSelection = false;
                 tool = 6;
-                graphics.DrawImage(selectedBitmap, endP);
+
+                if (isImage)
+                {
+                    int width = Convert.ToInt32(selectedBitmap.Width * 1.146);
+                    int height = Convert.ToInt32(selectedBitmap.Height * 1.146);
+                    graphics.DrawImage(new Bitmap(selectedBitmap, new Size(width, height)), endP);
+                }
+                else
+                {
+                    graphics.DrawImage(selectedBitmap, endP);
+                }
+                
 
                 startPRec = endP;
                 endP = new Point(startPRec.X + selectedBitmap.Width, endP.Y + selectedBitmap.Height);
@@ -419,25 +423,28 @@ namespace image_editor
         {
             deselect();
             tool = 1;
-            //cntSelect = 0;
+            Globals.cntSelect = 0;
         }
 
         private void brush_Click(object sender, EventArgs e)
         {
             deselect();
             tool = 4;
+            Globals.cntSelect = 0;
         }
 
         private void eraser_Click(object sender, EventArgs e)
         {
             deselect();
             tool = 5;
+            Globals.cntSelect = 0;
         }
 
         private void btnRectSelect_Click(object sender, EventArgs e)
         {
             deselect();
             tool = 6;
+            Globals.cntSelect = 0;
 
             startPRec = endP = new Point(0, 0);
         }
@@ -544,18 +551,21 @@ namespace image_editor
             startPRec = new Point(0, 0);
             endP = new Point(0, 0);
             tool = 2;
+            Globals.cntSelect = 0;
         }
 
         private void DrawText_Click(object sender, EventArgs e)
         {
             deselect();
             tool = 3;
+            Globals.cntSelect = 0;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             deselect();
             Txt = textBox1.Text;
+            Globals.cntSelect = 0;
 
         }
 

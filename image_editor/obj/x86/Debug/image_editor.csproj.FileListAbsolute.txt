@@ -5,7 +5,6 @@ C:\Users\guncda\Documents\image_editor\image_editor\bin\Debug\image_editor.pdb
 C:\Users\guncda\Documents\image_editor\image_editor\obj\x86\Debug\image_editor.Form1.resources
 C:\Users\guncda\Documents\image_editor\image_editor\obj\x86\Debug\image_editor.Properties.Resources.resources
 C:\Users\guncda\Documents\image_editor\image_editor\obj\x86\Debug\image_editor.csproj.GenerateResource.Cache
-C:\Users\guncda\Documents\image_editor\image_editor\obj\x86\Debug\image_editor.csprojResolveAssemblyReference.cache
 C:\Users\Michał\Documents\GitHub\image_editor\image_editor\obj\x86\Debug\image_editor.exe
 C:\Users\Michał\Documents\GitHub\image_editor\image_editor\obj\x86\Debug\image_editor.pdb
 C:\Users\Michał\Documents\GitHub\image_editor\image_editor\bin\Debug\image_editor.exe

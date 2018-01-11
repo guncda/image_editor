@@ -45,7 +45,12 @@ namespace image_editor
             Image i = Clipboard.GetImage();
             if (i == null) return;
 
+            Globals.background = (Bitmap)Globals.image.Clone();
             graphics.DrawImage(i, new Point(0, 0));
+            Globals.cntSelect++;
+
+            Globals.selectedArea = new System.Drawing.Rectangle(0, 0, i.Width, i.Height);
+            graphics.DrawRectangle(new Pen(Color.Blue) { DashPattern = new float[] { 5, 1.5f } }, Globals.selectedArea);
             picture.Invalidate();
         }
 
